@@ -3,40 +3,116 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#090909">
 <title>THE BLIND WAY — Official Movie Page</title>
 <style>
-:root{color-scheme:dark;--bg:#090909;--panel:#151515;--text:#f5f5f5;--muted:#bdbdbd;--red:#e62d32}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,Helvetica,sans-serif;line-height:1.55}
-header{padding:18px 7%;border-bottom:1px solid #282828;display:flex;justify-content:space-between;align-items:center;gap:12px}
-.brand{font-family:Georgia,serif;letter-spacing:.06em;font-size:clamp(18px,4vw,27px)}.tag{color:#aaa;font-size:12px;letter-spacing:.18em}
-.hero{min-height:68vh;display:flex;align-items:center;padding:70px 7%;background:radial-gradient(ellipse at 70% 35%,#333 0%,#171717 28%,#090909 70%)}
-.hero-inner{max-width:760px}.eyebrow{color:#ff555a;letter-spacing:.2em;font-size:12px;font-weight:bold}
-h1{font-family:Georgia,serif;font-size:clamp(42px,9vw,86px);line-height:.98;margin:18px 0;text-shadow:0 5px 25px #000}
-.subtitle{font-size:clamp(18px,3vw,24px);color:#ddd;margin:18px 0 28px}
-.btn{display:inline-block;text-decoration:none;border:0;border-radius:999px;padding:15px 26px;background:var(--red);color:#fff;font-weight:bold;font-size:15px}
-.note{color:#aaa;font-size:13px;margin-top:13px;max-width:580px}
-section{padding:42px 7%;max-width:1000px;margin:auto}.panel{background:var(--panel);border:1px solid #292929;border-radius:16px;padding:24px;margin:18px 0}
-h2{font-size:24px;margin-top:0}.muted{color:var(--muted)}.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}.step{padding:18px;background:#101010;border:1px solid #292929;border-radius:12px}
-footer{border-top:1px solid #282828;padding:24px 7%;color:#999;font-size:12px}
-a{color:#ff777b}
+*{box-sizing:border-box}
+body{margin:0;background:#090909;color:#f5f5f5;font-family:Arial,sans-serif}
+header,section,footer{padding:24px 7%;border-bottom:1px solid #282828}
+.brand{font-family:Georgia,serif;letter-spacing:3px;color:#ff777b}
+.hero{min-height:55vh;display:flex;align-items:center;justify-content:center;text-align:center}
+main{max-width:800px;margin:auto}
+h1{font-family:Georgia,serif;font-size:clamp(34px,7vw,58px)}
+p{line-height:1.7;color:#ccc}
+input,button{width:100%;padding:14px;margin:8px 0;border-radius:7px;font-size:16px}
+input{background:#181818;color:white;border:1px solid #555}
+button{background:#ff777b;color:#111;border:0;font-weight:bold}
+button:disabled{opacity:.5}
+.note{font-size:13px;color:#aaa}
+#status{overflow-wrap:anywhere}
+iframe{width:100%;aspect-ratio:16/9;border:0}
 </style>
+<script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
 </head>
 <body>
-<header><div class="brand">THE BLIND WAY</div><div class="tag">A MAHENDRAN FILMS ORIGINAL</div></header>
+<header><div class="brand">MAHENDRAN FILMS</div></header>
 <main>
-<div class="hero"><div class="hero-inner">
-<div class="eyebrow">LIMITED DIGITAL PREMIERE</div>
-<h1>THE<br>BLIND WAY</h1>
-<div class="subtitle">A Tamil thriller.</div>
-<a class="btn" href="#access">ACCESS THE MOVIE</a>
-<p class="note">Official movie page. Secure playback will be enabled after the payment and video-player integration is configured.</p>
-</div></div>
+<section class="hero">
+<div>
+<p>AN ORIGINAL TAMIL THRILLER</p>
+<h1>THE BLIND WAY</h1>
+<p>A Mahendran Films Original</p>
+<p>Full Movie Access — ₹49</p>
+</div>
+</section>
 <section>
-<div class="panel"><h2>About the Film</h2><p class="muted">Experience THE BLIND WAY, a Mahendran Films original Tamil thriller. Thank you for supporting independent filmmaking.</p></div>
-<div class="panel" id="access"><h2>Watch THE BLIND WAY</h2><p class="muted">Movie access is intended for paid viewers. The payment link and secure DRM playback must be connected before accepting new payments.</p><p><strong>Price:</strong> ₹49</p><p class="note">Setup note: Replace the payment button destination with a fresh Cashfree live payment link only after confirming that successful payment can be verified server-side. Do not place VdoCipher API secrets or OTP-generation code in this public page.</p><a class="btn" href="https://merchant.cashfree.com/" target="_blank" rel="noopener">Payment setup (merchant only)</a></div>
-<div class="panel"><h2>How access will work</h2><div class="steps"><div class="step"><strong>1. Pay securely</strong><p class="muted">Payment through Cashfree.</p></div><div class="step"><strong>2. Verify payment</strong><p class="muted">A server confirms the payment status.</p></div><div class="step"><strong>3. Watch securely</strong><p class="muted">VdoCipher DRM player opens after verification.</p></div></div></div>
+<h2>Watch the Movie</h2>
+<p>Complete the payment to unlock secure movie playback.</p>
+<form id="payForm">
+<label for="phone">Mobile number</label>
+<input id="phone" type="tel" inputmode="numeric" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit mobile number" required>
+<label for="email">Email (optional)</label>
+<input id="email" type="email" placeholder="Email address">
+<button id="payBtn" type="submit">Pay ₹49 and Watch</button>
+</form>
+<p id="status" role="status"></p>
+<div id="player"></div>
+<p class="note">Secure playback is available after the server confirms successful payment.</p>
 </section>
 </main>
-<footer>© Mahendran Films · THE BLIND WAY. All rights reserved.</footer>
-</body></html>
+<footer><p>© Mahendran Films · THE BLIND WAY</p></footer>
+<script>
+const cashfree = Cashfree({mode:"production"});
+const form = document.getElementById("payForm");
+const button = document.getElementById("payBtn");
+const statusBox = document.getElementById("status");
+const player = document.getElementById("player");
+
+async function unlockMovie(orderId){
+  statusBox.textContent = "Verifying payment securely…";
+  const response = await fetch("/api/watch-movie", {
+    method:"POST",
+    headers:{"Content-Type":"application/json"},
+    body:JSON.stringify({order_id:orderId})
+  });
+  const data = await response.json();
+  if(!response.ok) throw new Error(data.error || "Payment verification failed.");
+  player.innerHTML = "";
+  const frame = document.createElement("iframe");
+  frame.src = "https://player.vdocipher.com/v2/?otp=" +
+    encodeURIComponent(data.otp) + "&playbackInfo=" +
+    encodeURIComponent(data.playbackInfo);
+  frame.allow = "encrypted-media; autoplay; fullscreen";
+  frame.allowFullscreen = true;
+  player.appendChild(frame);
+  statusBox.textContent = "Payment verified. Enjoy the movie.";
+}
+
+(async function checkReturn(){
+  const params = new URLSearchParams(location.search);
+  const orderId = params.get("order_id");
+  if(orderId){
+    try { await unlockMovie(orderId); }
+    catch(error){ statusBox.textContent = error.message; }
+  }
+})();
+
+form.addEventListener("submit", async (event)=>{
+  event.preventDefault();
+  button.disabled = true;
+  statusBox.textContent = "Preparing secure payment…";
+  try{
+    const phone = document.getElementById("phone").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const response = await fetch("/api/create-order", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({phone,email})
+    });
+    const data = await response.json();
+    if(!response.ok) throw new Error(data.error || "Could not create payment.");
+    if(!data.payment_session_id || !data.order_id)
+      throw new Error("Payment session details are missing.");
+    const result = await cashfree.checkout({
+      paymentSessionId:data.payment_session_id,
+      redirectTarget:"_self"
+    });
+    if(result && result.error)
+      throw new Error(result.error.message || "Payment was not completed.");
+  }catch(error){
+    statusBox.textContent = error.message;
+    button.disabled = false;
+  }
+});
+</script>
+</body>
+</html>
