@@ -3,3 +3,13 @@
 
 [functions]
   directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/create-order"
+  to = "/.netlify/functions/create-order"
+  status = 200
+
+[[redirects]]
+  from = "/api/watch-movie"
+  to = "/.netlify/functions/watch-movie"
+  status = 200
